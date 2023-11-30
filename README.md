@@ -1,3 +1,2 @@
-## USE THE BELOW COMMAND TO START THE CLIENT APPLICATION
-
+## To run the app in the development mode:
 ### `npm start`
