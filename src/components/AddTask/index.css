@@ -1,4 +1,4 @@
-#add-task { 
-  width: 500px;
-  margin: auto ;
+#add-task .form-control:focus {
+  box-shadow: none;
+  border-color: #212529;
 }

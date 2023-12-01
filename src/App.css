@@ -4,4 +4,14 @@
 
 #main {
   padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  #main {
+    width: 500px;
+  }
 }

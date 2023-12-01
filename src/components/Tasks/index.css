@@ -1,3 +1,8 @@
 .task-input.form-control:disabled {
   background-color: white;
 }
+
+.task-input.form-control:focus {
+  box-shadow: none;
+  border-color: #212529;
+}

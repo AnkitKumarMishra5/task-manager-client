@@ -15,7 +15,7 @@ const NavbarComponent = () => {
             className="d-inline-block align-top"
             alt="Logo"
           />
-          Task Manager
+          {' '}Task Manager
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -24,8 +24,14 @@ const NavbarComponent = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">About</Nav.Link>
+            <Nav.Link href="#">Home</Nav.Link>
+          </Nav>
+          <Nav
+            className="my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+            <Nav.Link href="https://www.linkedin.com/in/ankitkumarmishra/">Connect with the developer</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

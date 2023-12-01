@@ -25,7 +25,7 @@ const Tasks: React.FC<TasksProps> = ({ tasks, editTask, deleteTask }) => {
   }
 
   return (
-    <ListGroup style={{ width: '500px', margin: 'auto' }}>
+    <ListGroup>
       {tasks.map((task) => {
         const currentTaskEditing = editingTaskId === task._id
         return (

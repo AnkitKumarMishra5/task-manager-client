@@ -1,0 +1,17 @@
+#alert-box {
+  position: absolute;
+  left: 30px;
+  bottom: 0;
+}
+
+#alert-box p {
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #alert-box {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+  }
+}
