@@ -9,8 +9,12 @@ import NavbarComponent from './components/Navbar';
 import AddTask from './components/AddTask';
 import Tasks from './components/Tasks';
 
+import { Task } from './interfaces/common'
+
+const { REACT_APP_API_URL } = process.env
+
 const App = () => {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
     fetchTasks()
@@ -18,16 +22,16 @@ const App = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/api/tasks')
+      const res = await axios.get(`${REACT_APP_API_URL}/tasks`)
       setTasks(res.data.data)
     } catch (error) {
       console.error(error)
     }
   }
   
-  const addTask = async (taskData) => {
+  const addTask = async (taskData: { description: string }) => {
     try {
-      const res = await axios.post('http://localhost:4000/api/tasks', taskData)
+      const res = await axios.post(`${REACT_APP_API_URL}/tasks`, taskData)
       setTasks([
         ...tasks,
         res.data.data
@@ -37,9 +41,9 @@ const App = () => {
     }
   }
 
-  const editTask = async (taskData) => {
+  const editTask = async (taskData: Task) => {
     try {
-      await axios.patch(`http://localhost:4000/api/tasks/${taskData._id}`, taskData)
+      await axios.patch(`${REACT_APP_API_URL}/tasks/${taskData._id}`, taskData)
       let newTasks = tasks.map(task => {
         if(task._id !== taskData._id) return task
         else return taskData
@@ -50,9 +54,9 @@ const App = () => {
     }
   }
 
-  const deleteTask = async (taskId) => {
+  const deleteTask = async (taskId: string) => {
     try {
-      await axios.delete(`http://localhost:4000/api/tasks/${taskId}`)
+      await axios.delete(`${REACT_APP_API_URL}/tasks/${taskId}`)
       let newTasks = tasks.filter(task => task._id !== taskId)
       setTasks(newTasks)
     } catch (error) {
@@ -64,7 +68,7 @@ const App = () => {
     <div className="App">
       <NavbarComponent />
       <Container id='main'>
-        <AddTask tasks={tasks} addTask={addTask} />
+        <AddTask addTask={addTask} />
         <Tasks tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
       </Container>
     </div>

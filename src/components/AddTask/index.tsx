@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import './index.css';
 
-const AddTask = ({ addTask }) => {
-  const [description, setDescription] = useState('');
+interface AddTaskProps {
+  addTask: (taskData: { description: string }) => void
+}
 
-  const handleSubmit = (e) => {
+const AddTask: React.FC<AddTaskProps> = ({ addTask }) => {
+  const [description, setDescription] = useState<string>('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addTask({ description })
     setDescription('')
@@ -16,7 +20,7 @@ const AddTask = ({ addTask }) => {
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="Draft a technical article ..."
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
           value={description}
         />
         <Button variant="dark" id="button-addon2" type="submit">

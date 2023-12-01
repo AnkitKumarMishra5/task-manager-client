@@ -2,14 +2,22 @@ import { useState } from 'react';
 import { ListGroup, InputGroup, Form, Button } from 'react-bootstrap'
 import './index.css'
 
-const Tasks = ({ tasks, editTask, deleteTask }) => {
-  const [description, setDescription] = useState('')
-  const [editingTaskId, setEditingTaskId] = useState()
+import { Task } from '../../interfaces/common'
 
-  const handleEdit = (task) => {
+interface TasksProps {
+  tasks: Task[],
+  editTask: (taskData: { _id: string, description: string }) => void
+  deleteTask: (taskId: string) => void
+}
+
+const Tasks: React.FC<TasksProps> = ({ tasks, editTask, deleteTask }) => {
+  const [description, setDescription] = useState<string>('')
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
+
+  const handleEdit = (task: Task) => {
     if (editingTaskId) {
       editTask({ ...task, description })
-      setEditingTaskId()
+      setEditingTaskId(null)
       return
     }
     setDescription(task.description)
